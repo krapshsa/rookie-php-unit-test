@@ -2,7 +2,7 @@
 
 namespace App\Lesson2;
 
-class Translation2
+class TranslationSeam
 {
     /**
      * @var string[][]
@@ -23,14 +23,20 @@ class Translation2
         return $this->config;
     }
 
+    protected function getL10N(): string
+    {
+        return $this->getConfig()->get('l10n');
+    }
+
     public function t(string $msg): string
     {
-        $language = $this->getConfig()->get('l10n');
+        $l10n = $this->getL10N();
+
         if (
-            array_key_exists($language, $this->l10n) &&
-            array_key_exists($msg, $this->l10n[$language])
+            array_key_exists($l10n, $this->l10n) &&
+            array_key_exists($msg, $this->l10n[$l10n])
         ) {
-            return $this->l10n[$language][$msg];
+            return $this->l10n[$l10n][$msg];
         }
 
         return $msg;

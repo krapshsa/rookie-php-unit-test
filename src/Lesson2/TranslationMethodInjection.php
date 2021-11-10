@@ -2,7 +2,7 @@
 
 namespace App\Lesson2;
 
-class TranslationNotTestable
+class TranslationMethodInjection
 {
     /**
      * @var string[][]
@@ -16,6 +16,11 @@ class TranslationNotTestable
     public function __construct()
     {
         $this->config = new Config();
+    }
+
+    public function setConfig(IConfig $config)
+    {
+        $this->config = $config;
     }
 
     public function t(string $msg): string

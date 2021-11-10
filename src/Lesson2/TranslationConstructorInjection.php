@@ -2,12 +2,12 @@
 
 namespace App\Lesson2;
 
-class Translation1
+class TranslationConstructorInjection
 {
     /**
      * @var string[][]
      */
-    private array $l10n = [
+    private array $l10nMap = [
         'tw' => ['hello' => '哈囉'],
         'jp' => ['hello' => 'ハロー']
     ];
@@ -24,12 +24,13 @@ class Translation1
 
     public function t(string $msg): string
     {
-        $language = $this->config->get('l10n');
+        $l10n = $this->config->get('l10n');
+
         if (
-            array_key_exists($language, $this->l10n) &&
-            array_key_exists($msg, $this->l10n[$language])
+            array_key_exists($l10n, $this->l10nMap) &&
+            array_key_exists($msg, $this->l10nMap[$l10n])
         ) {
-            return $this->l10n[$language][$msg];
+            return $this->l10nMap[$l10n][$msg];
         }
 
         return $msg;

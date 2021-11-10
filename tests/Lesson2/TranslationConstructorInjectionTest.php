@@ -3,15 +3,17 @@
 namespace Test\Lesson2;
 
 use App\Lesson2\IConfig;
-use App\Lesson2\Translation1;
+use App\Lesson2\TranslationMethodInjection;
 use PHPUnit\Framework\TestCase;
 
-class Translation1Test extends TestCase
+class TranslationConstructorInjectionTest extends TestCase
 {
     public function test_hello_tw(): void
     {
         // Arrange
-        $translation = $this->getTranslation('tw');
+        $configStub = $this->createStub(IConfig::class);
+        $configStub->method('get')->willReturn('tw');
+        $translation = new TranslationMethodInjection($configStub);
 
         // Act
         $result = $translation->t('hello');
@@ -23,23 +25,14 @@ class Translation1Test extends TestCase
     public function test_hello_jp(): void
     {
         // Arrange
-        $translation = $this->getTranslation('jp');
+        $configStub = $this->createStub(IConfig::class);
+        $configStub->method('get')->willReturn('jp');
+        $translation = new TranslationMethodInjection($configStub);
 
         // Act
         $result = $translation->t('hello');
 
         // Assert
         self::assertEquals('ハロー', $result);
-    }
-
-    /**
-     * @param string $l10n
-     * @return Translation1
-     */
-    private function getTranslation(string $l10n): Translation1
-    {
-        $configStub = $this->createStub(IConfig::class);
-        $configStub->method('get')->willReturn($l10n);
-        return new Translation1($configStub);
     }
 }
