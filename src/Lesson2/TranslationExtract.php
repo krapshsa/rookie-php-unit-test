@@ -2,7 +2,7 @@
 
 namespace App\Lesson2;
 
-class TranslationSeam
+class TranslationExtract
 {
     /**
      * @var string[][]

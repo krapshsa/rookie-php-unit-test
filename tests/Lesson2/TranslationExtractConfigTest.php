@@ -3,10 +3,10 @@
 namespace Test\Lesson2;
 
 use App\Lesson2\IConfig;
-use App\Lesson2\TranslationSeam;
+use App\Lesson2\TranslationExtract;
 use PHPUnit\Framework\TestCase;
 
-class TestTranslationSeamConfig extends TranslationSeam
+class TestTranslationExtractConfig extends TranslationExtract
 {
     // 故意取不一樣名字。
     // 因為 parent 有相同的 private property
@@ -24,13 +24,13 @@ class TestTranslationSeamConfig extends TranslationSeam
     }
 }
 
-class TranslationSeamConfigTest extends TestCase
+class TranslationExtractConfigTest extends TestCase
 {
     public function test_hello_tw_with_setConfig(): void
     {
         $configStub = $this->createStub(IConfig::class);
         $configStub->method('get')->willReturn('tw');
-        $translation = new TestTranslationSeamConfig();
+        $translation = new TestTranslationExtractConfig();
         $translation->setConfig($configStub);
 
         $result = $translation->t('hello');
@@ -42,7 +42,7 @@ class TranslationSeamConfigTest extends TestCase
     {
         $configStub = $this->createStub(IConfig::class);
         $configStub->method('get')->willReturn('jp');
-        $translation = new TestTranslationSeamConfig();
+        $translation = new TestTranslationExtractConfig();
         $translation->setConfig($configStub);
 
         $result = $translation->t('hello');

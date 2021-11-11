@@ -3,10 +3,10 @@
 namespace Test\Lesson2;
 
 use App\Lesson2\IConfig;
-use App\Lesson2\TranslationSeam;
+use App\Lesson2\TranslationExtract;
 use PHPUnit\Framework\TestCase;
 
-class TestTranslationSeamL10N extends TranslationSeam
+class TestTranslationExtractL10N extends TranslationExtract
 {
     private string  $l10n;
 
@@ -21,11 +21,11 @@ class TestTranslationSeamL10N extends TranslationSeam
     }
 }
 
-class TranslationSeamL10NTest extends TestCase
+class TranslationExtractL10NTest extends TestCase
 {
     public function test_hello_tw_with_setL10N(): void
     {
-        $translation = new TestTranslationSeamL10N();
+        $translation = new TestTranslationExtractL10N();
         $translation->setL10N('tw');
 
         $result = $translation->t('hello');
@@ -35,7 +35,7 @@ class TranslationSeamL10NTest extends TestCase
 
     public function test_hello_jp_with_setL10N(): void
     {
-        $translation = new TestTranslationSeamL10N();
+        $translation = new TestTranslationExtractL10N();
         $translation->setL10N('jp');
 
         $result = $translation->t('hello');
